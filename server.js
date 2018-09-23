@@ -1,11 +1,11 @@
-var app = express();
-var cheerio = require("cheerio");
-var collections = ["scrapedData"];
-var databaseUrl = "scraper";
-
 var express = require("express");
 var mongojs = require("mongojs");
 var request = require("request");
+var cheerio = require("cheerio");
+var app = express();
+
+var databaseUrl = "scraper";
+var collections = ["scrapedData"];
 
 var db = mongojs(databaseUrl, collections);
 db.on("error", function (error) {
@@ -72,4 +72,4 @@ app.get("/scrape", function (req, res) {
 app.listen(3000, function () {
     console.log("App running on port 3000!")
 })
-console.log(results);
+// console.log(dbscrapedData);
