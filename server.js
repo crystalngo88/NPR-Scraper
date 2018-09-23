@@ -3,8 +3,8 @@ var cheerio = require("cheerio");
 var collections = ["scrapedData"];
 var databaseUrl = "scraper";
 
-var express = require("require");
-var mongo = require("mongojs");
+var express = require("express");
+var mongojs = require("mongojs");
 var request = require("request");
 
 var db = mongojs(databaseUrl, collections);
@@ -52,18 +52,24 @@ app.get("/scrape", function (req, res) {
             }
 
             if (titleText && href && teaserText) {
-                results.push({
+                dbscrapedData.insert({
                     title: titleText,
                     link: href,
                     teaser: teaserText,
-                })
+                },
+                    function (err, inserted) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(inserted)
+                        }
+                    });
             }
-
         });
-
     });
-    app.listen(3000, function() {
-        console.log("App running on port 3000!")
-    })
-    console.log(results);
+    res.send("Scrape Complete");
+});
+app.listen(3000, function () {
+    console.log("App running on port 3000!")
 })
+console.log(results);
