@@ -2,6 +2,8 @@ var express = require("express");
 var mongojs = require("mongojs");
 var request = require("request");
 var cheerio = require("cheerio");
+var logger = require("morgan");
+
 var app = express();
 
 var databaseUrl = "scraper";

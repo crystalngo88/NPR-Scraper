@@ -25,6 +25,7 @@
     "mongojs": "^2.6.0",
     "mongoose": "^5.2.17",
     "nightmare": "^3.0.1",
+    "passport-google-oauth": "^1.0.0",
     "request": "^2.88.0",
     "stringr": "^1.0.0"
   },
