@@ -1,17 +1,5 @@
 var cheerio = require("cheerio");
 var request = require("request");
-// var stringr = require("stringr");
-// var Nightmare = require("nightmare")
-function removeSlashes(str) {
-    // code here
-    // str.replace(/\//g, 'ForwardSlash');
-    console.log('str:', str)
-    return str.replace(/\\\//g, '');
-}
-// const { readFileSync, writeFileSync } = require('fs');
-// const numbers = readFileSync('./tesco-title-numbers.csv', 
-//   {encoding: 'utf8'}).trim().split('\n');
-// console.dir(numbers);
 
 console.log("\n********************************\n" + "Grabbing headlines from NPR.org" + "\n********************************\n");
 
