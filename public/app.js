@@ -35,6 +35,10 @@ $(document).on("click", "p", function () {
 $(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
+  db.Article.create(result)
+                    .then(function (dbArticle) {
+                        console.log("dbArticles: ", dbArticle);
+                    })
 
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
@@ -60,7 +64,34 @@ $(document).on("click", "#savenote", function () {
   $("#bodyinput").val("");
 });
 
+// $.getJSON("/articles", function (data) {
+//     res.JSON(data);
+//     for (var i = 0; i < data.length; i++) {
 
+//       var articleDiv = $('<div>');
+//       articleDiv.attr('data-id', data[i]._id);
+//       articleDiv.attr('class', 'card rounded card-body');
+
+//       var articleTitle = $('<p>');
+//       articleTitle.attr('class', 'card-text text-center text-wrap card-header');
+//       articleTitle.attr('data-id', data[i]._id);
+//       articleTitle.attr('id', data[i].title);
+//       articleTitle.text(data[i].title);
+//       articleDiv.append(articleTitle);
+
+//       var articleLink = $("<a>");
+//       articleLink.attr('href',data[i].link);
+//       articleLink.attr('class','btn-danger');
+//       articleLink.text("Click here to read article");
+//       articleLink.css("font-size", "12px");
+
+//       $(articleTitle).append(articleLink);
+
+
+//       $("#articles").append(articleDiv);
+//     }
+//     $("#articleDiv").css("display", "block");
+//   })
 
 
 // function getResults(){

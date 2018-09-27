@@ -65,21 +65,40 @@
     </div>
 
     <!--Leave a Comment-->
-    <h1>Leave a Comment</h1>
-    <div id="user-name">
-        <p>Name</p>
-        <input type="text" id="name" />
-        <br>
-        <p>Comment</p>
-        <textarea id="comment"></textarea>
-        <div id="buttons">
-            <div id="action-button">
-                <button id="make-new">Submit</button>
+    <body>
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Leave a Note</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <h1>Leave a Comment</h1>
+                    <div id="user-title">
+                        <p>Title</p>
+                        <input type="text" id="title" />
+                        <br>
+                        <p>Comment</p>
+                        <textarea id="comment"></textarea>
+                        <div id="buttons">
+                            <div id="action-button">
+                                <button id="make-new">Save</button>
+                            </div>
+                            <button id="clear-all">Delete note</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save notes</button>
+                </div>
+              </div>
             </div>
-            <button id="clear-all">Delete All Comments</button>
-        </div>
-    </div>
-
+          </div>
+    
 
     <script src="app.js"></script>
 </body>

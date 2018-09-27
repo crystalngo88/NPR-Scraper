@@ -15,23 +15,23 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("public"));
 
 //change path???//
-mongoose.connect("mongodb://localhost/", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/admin", { useNewUrlParser: true });
 
 app.get("/scrape", function (req, res) {
     axios.get("http://www.npr.org").then(function (response) {
         var $ = cheerio.load(response.data);
 
-        $(".story-text").each(function (i, element) {
+        $(".stories-wrap").each(function (i, element) {
             // var result = {};
 
             // result.title = $(this).find('.title')[0];
             // result.link = $(this).find('a')[1];
             // result.teaser = $(this).find('.teaser');
 
-            var title = $(element).find('.title')[0];
+            var title = $(element).children().find('h3.title')[0];
             var titleText = title.children[0].data;
 
-            var link = $(element).find('a')[1];
+            var link = $(element).find('a')[0];
             var href = '';
             if (link && link.attribs && link.attribs.href) {
                 href = link.attribs.href;
@@ -44,12 +44,13 @@ app.get("/scrape", function (req, res) {
                 teaserText = teaser.children[0].data;
             }
 
-            if (titleText && href && teaserText) {
+            if (titleText && href) {
                 var result = {
                     title: titleText,
                     link: href,
-                    teaser: teaserText,
+                    teaser: teaserText || '',
                 };
+                console.log('running right before creating')
                 db.Article.create(result)
                     .then(function (dbArticle) {
                         console.log("dbArticles: ", dbArticle);
@@ -65,7 +66,7 @@ app.get("/scrape", function (req, res) {
 });
 
 app.get("/articles", function (req, res) {
-    db.Article.find({})
+    db.Article.find({}).limit(10)
         .then(function (dbArticle) {
             res.json(dbArticle);
         })
